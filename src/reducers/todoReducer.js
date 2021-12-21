@@ -8,6 +8,8 @@ export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.AddNewToDo:
       return { ...state, todos: [action.payload, ...state.todos] };
+    case types.ActiveTodo:
+      return { ...state, active: { ...action.payload } };
     case types.DeleteToDo:
       return {
         ...state,
