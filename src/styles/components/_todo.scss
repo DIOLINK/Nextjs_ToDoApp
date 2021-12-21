@@ -1,0 +1,54 @@
+.todo__main-content {
+  display: flex;
+}
+
+.todo__new-task {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: darken($color: $white, $amount: 20);
+  }
+}
+
+.todo__entries {
+  flex: 1 1 auto;
+  margin-top: 30px;
+  overflow-y: auto;
+}
+
+.todo__task {
+  background-color: $white;
+  border-radius: 5px;
+  color: $dark-grey;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.todo__task-body {
+  padding: 10px;
+}
+.todo__task-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.todo__task-content {
+  font-size: 10px;
+}
+.todo__task-date-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+.todo__task-date-box span {
+  font-size: 12px;
+}
