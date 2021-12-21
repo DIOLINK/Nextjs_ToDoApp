@@ -6,7 +6,9 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
+import { authReducer } from '../reducers/authReducer';
 import { todoReducer } from '../reducers/todoReducer';
+import { uiReducer } from '../reducers/uiReducer';
 
 const composeEnhancers =
   (typeof window !== 'undefined' &&
@@ -14,6 +16,8 @@ const composeEnhancers =
   compose;
 
 const reducers = combineReducers({
+  auth: authReducer,
+  ui: uiReducer,
   todos: todoReducer,
 });
 

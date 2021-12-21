@@ -1,6 +1,14 @@
 import Head from 'next/head';
+import { useState } from 'react';
+
+import { Login } from '../components/auth/Login';
+import { Register } from '../components/auth/Register';
 
 export default function Home() {
+  const [toggle, setToggle] = useState(true);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
   return (
     <div>
       <Head>
@@ -13,9 +21,14 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>ToDo-app</h1>
-
-        <div></div>
+        <h1>ToDo-App</h1>
+        <div className="auth__box-container">
+          {toggle ? (
+            <Login handleToggle={handleToggle} />
+          ) : (
+            <Register handleToggle={handleToggle} />
+          )}
+        </div>
       </main>
 
       <footer>
