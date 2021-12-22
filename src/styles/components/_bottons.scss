@@ -22,6 +22,14 @@
   }
 }
 
+.btn-primary-done {
+  background-color: $primary;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($color: $primary, $amount: 15);
+  }
+}
+
 .btn-block {
   width: 100%;
 }

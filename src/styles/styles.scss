@@ -1,6 +1,8 @@
-@import './base/base';
 @import './base/settings';
+@import './base/base';
 
 //Components
 @import './components/auth';
 @import './components/bottons';
+@import './components/todo';
+@import './components/search';

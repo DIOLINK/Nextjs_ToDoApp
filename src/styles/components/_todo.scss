@@ -1,0 +1,71 @@
+.todo__main-content {
+  display: flex;
+  flex-direction: column;
+}
+.todo__new-task {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: darken($color: $white, $amount: 20);
+  }
+}
+.todo__entries {
+  width: 50vw;
+}
+.todo__task {
+  background-color: $white;
+  border-radius: 5px;
+  color: $dark-grey;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.todo_card-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.todo__task-body {
+  padding: 10px;
+}
+.todo__task-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.todo__task-content {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.todo__task-date-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+.todo__task-date-box span {
+  font-size: 12px;
+}
+.todo__list-group-item {
+  overflow: hidden;
+  border-radius: 4px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 3px 4px 0px $dark-grey;
+}
+.todo__btn-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.todo__complete {
+  text-decoration: line-through;
+}

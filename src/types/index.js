@@ -9,8 +9,10 @@ export const types = {
   uiFinishLoading: '[UI] Finish loading',
 
   AddNewToDo: '[ToDo] New ToDo',
-  ActiveTodo: '[ToDo] Set Active ToDo',
+  ActiveToDo: '[ToDo] Set Active ToDo',
+  LoadToDo: '[ToDo] Set Load ToDo',
   DeleteToDo: '[ToDo] Delete ToDo',
   UpdateToDo: '[ToDo] Update ToDo',
   ToggleToDo: '[ToDo] Toggle ToDo',
+  LogoutCleaningToDo: '[ToDo] Logout Cleaning ToDo',
 };

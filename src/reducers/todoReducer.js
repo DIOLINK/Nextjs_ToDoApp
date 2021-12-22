@@ -8,8 +8,12 @@ export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.AddNewToDo:
       return { ...state, todos: [action.payload, ...state.todos] };
-    case types.ActiveTodo:
+    case types.ActiveToDo:
       return { ...state, active: { ...action.payload } };
+    case types.LoadToDo:
+      return { ...state, todos: [...action.payload] };
+    case types.LogoutCleaningToDo:
+      return { ...state, active: null, todos: [] };
     case types.DeleteToDo:
       return {
         ...state,
@@ -23,6 +27,6 @@ export const todoReducer = (state = initialState, action) => {
           : todo,
       );
     default:
-      return state; //initialState
+      return state;
   }
 };
