@@ -5,7 +5,8 @@ This examples shows how to use Docker with Next.js based on the [deployment docu
 
 1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
 1. Build your container: `docker build -t nextjs-docker .`.
-1. Run your container: `docker run -p 3000:3000 --name todo-app nextjs-docker`.
+1. Run your container: `docker run --env-file=$(pwd)/.env.local -v $(pwd)/src:/app/src -p 3000:3000 --name todo-app next-node-todosapp
+`.
 
 You can view your images created with `docker images`.
 
