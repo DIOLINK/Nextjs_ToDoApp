@@ -1,7 +1,9 @@
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { activeTodo, setStatusToDo } from '../../actions/todos';
+
+import { activeTodo, startStatusChange } from '../../actions/todos';
 import { setEditModalToDo, setShowModalToDo } from '../../actions/ui';
+
 import { toDoStatus } from '../../types';
 
 const TodoListItem = ({
@@ -40,13 +42,37 @@ const TodoListItem = ({
     dispatch(setEditModalToDo(true));
   };
   const handleDelete = () => {
-    dispatch(setStatusToDo(id, toDoStatus.deleted));
+    dispatch(
+      startStatusChange(id, {
+        createdDate,
+        updateDate,
+        title,
+        status: toDoStatus.deleted,
+        description,
+      }),
+    );
   };
   const handleDone = () => {
     if (status === toDoStatus.done) {
-      dispatch(setStatusToDo(id, toDoStatus.pending));
+      dispatch(
+        startStatusChange(id, {
+          createdDate,
+          updateDate,
+          title,
+          status: toDoStatus.pending,
+          description,
+        }),
+      );
     } else {
-      dispatch(setStatusToDo(id, toDoStatus.done));
+      dispatch(
+        startStatusChange(id, {
+          createdDate,
+          updateDate,
+          title,
+          status: toDoStatus.done,
+          description,
+        }),
+      );
     }
   };
   return (
@@ -61,7 +87,7 @@ const TodoListItem = ({
           }`}
         >
           <span
-            class={
+            className={
               status === toDoStatus.done
                 ? 'badge bg-success'
                 : status === toDoStatus.pending

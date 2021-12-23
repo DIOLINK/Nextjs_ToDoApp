@@ -16,7 +16,7 @@ export const startLoginEmailPassword = (email, password) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName, user.email));
         dispatch(finishLoading());
       })
       .catch((e) => {
@@ -36,8 +36,8 @@ export const startRegisterWithNameEmailPassword = (
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(async ({ user }) => {
-        await user.updateProfile({ displayName: name });
-        dispatch(login(user.uid, user.displayName));
+        await user.updateProfile({ displayName: name, email: email });
+        dispatch(login(user.uid, user.displayName, user.email));
       })
       .catch((err) => {
         console.log(err);
@@ -52,14 +52,14 @@ export const startLoginGoogle = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName, user.email));
       });
   };
 };
 
-export const login = (uid, displayName) => ({
+export const login = (uid, displayName, email) => ({
   type: types.login,
-  payload: { uid, displayName },
+  payload: { uid, displayName, email },
 });
 
 export const startLogout = () => {

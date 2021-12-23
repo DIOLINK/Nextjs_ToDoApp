@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { startLogout } from '../../actions/auth';
 import { startNewToDo } from '../../actions/todos';
-import { setShowModalToDo } from '../../actions/ui';
+import { setEditModalToDo, setShowModalToDo } from '../../actions/ui';
+
 import ToDoForm from './TodoForm';
 import TodoList from './TodoList';
 import TodoShow from './TodoShow';
@@ -13,9 +12,9 @@ export const ToDoApp = () => {
   const { auth, ui } = useSelector((state) => state);
   const { name } = auth;
   const { showModal, editModal } = ui;
-
   const handleClose = () => {
     dispatch(setShowModalToDo(false));
+    dispatch(setEditModalToDo(false));
   };
   const handleLogout = () => {
     dispatch(startLogout());

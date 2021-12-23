@@ -10,12 +10,14 @@ import {
 } from '../../actions/todos';
 
 import useForm from '../../hooks/useForm';
+import { toDoStatus } from '../../types';
 
 const ToDoForm = ({ handleClose }) => {
   const dispatch = useDispatch();
-  const { todos, ui } = useSelector((state) => state);
+  const { todos, ui, auth } = useSelector((state) => state);
   const { active } = todos;
   const { editModal } = ui;
+  const { email } = auth;
   const [formValues, handleInputChange, resetForm] = useForm(active);
 
   const activeId = useRef(active.id);
@@ -62,7 +64,17 @@ const ToDoForm = ({ handleClose }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           <div>
-            <p>Status: {status}</p>
+            <span
+              class={
+                status === toDoStatus.done
+                  ? 'badge bg-success'
+                  : status === toDoStatus.pending
+                  ? 'badge bg-warning text-dark'
+                  : 'badge bg-danger'
+              }
+            >
+              {status}
+            </span>
             <p className={'todo__task-body'}>
               {moment(createdDate).format('lll')}
             </p>
