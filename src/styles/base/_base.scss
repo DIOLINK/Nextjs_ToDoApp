@@ -7,14 +7,24 @@ html,
 body {
   height: 100vh;
   width: 100vw;
+  background-color: $light-grey;
+  overflow-x: hidden;
 }
 
 main {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .mt-1 {
   margin-top: 5px;
+}
+
+.mt-2 {
+  margin-top: 10px;
 }
 
 .mt-5 {
@@ -24,11 +34,30 @@ main {
 .mb-1 {
   margin-bottom: 5px;
 }
-
+.mb-2 {
+  margin-bottom: 10px;
+}
 .mb-5 {
   margin-bottom: 20px;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+.space-between-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.space-around-row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.center-row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }

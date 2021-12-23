@@ -1,0 +1,30 @@
+.search__container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.search__input {
+  color: $dark-grey;
+  border: 0px;
+  border-bottom: 1px solid $light-grey;
+  font-size: 1rem;
+  height: 1.5rem;
+  width: 100%;
+  transition: border-bottom 0.3s ease;
+  &:focus {
+    border-bottom: 1px solid $primary;
+    outline: none;
+  }
+}
+.search__btn {
+  width: 20%;
+}
+.search__btn-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
