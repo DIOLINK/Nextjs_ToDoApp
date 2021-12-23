@@ -4,9 +4,10 @@ export const types = {
 
   uiSetError: '[UI] Set Error',
   uiUnSetError: '[UI] UnSet Error',
-
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
+  uiToggleShowModalToDo: '[UI] Active Show Modal',
+  uiToggleEditModalToDo: '[UI] Active Edit Modal',
 
   AddNewToDo: '[ToDo] New ToDo',
   ActiveToDo: '[ToDo] Set Active ToDo',
@@ -15,4 +16,10 @@ export const types = {
   UpdateToDo: '[ToDo] Update ToDo',
   ToggleToDo: '[ToDo] Toggle ToDo',
   LogoutCleaningToDo: '[ToDo] Logout Cleaning ToDo',
+};
+
+export const toDoStatus = {
+  pending: 'Pending',
+  done: 'Done',
+  deleted: 'Deleted',
 };

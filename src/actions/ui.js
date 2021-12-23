@@ -16,3 +16,13 @@ export const startLoading = () => ({
 export const finishLoading = () => ({
   type: types.uiFinishLoading,
 });
+
+export const setShowModalToDo = (showModal) => ({
+  type: types.uiToggleShowModalToDo,
+  payload: showModal,
+});
+
+export const setEditModalToDo = (editModal) => ({
+  type: types.uiToggleEditModalToDo,
+  payload: editModal,
+});

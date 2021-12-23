@@ -1,29 +1,27 @@
-import { useMemo } from 'react';
-
-import { getToDosByTitle } from '../../utils/getToDosByTitle';
+import { getToDosByTitleAndStatus } from '../../utils/getToDosByTitleAndStatus';
 import useForm from '../../hooks/useForm';
 import TodoListItem from './TodoListItem';
 import Search from '../Search';
 
 const TodoList = () => {
-  const [{ searchText }, handleInputChange, reset] = useForm({
+  const [formValues, handleInputChange, reset] = useForm({
     searchText: '',
+    status: '',
   });
-  const toDosFilter = getToDosByTitle(searchText);
-
-  console.log('toDosFilter :>> ', toDosFilter, searchText);
+  const { searchText, status } = formValues;
+  const toDosFilter = getToDosByTitleAndStatus(searchText, status);
   return (
     <>
       <Search
-        searchText={searchText}
+        formValues={formValues}
         handleInputChange={handleInputChange}
         reset={reset}
       />
-      <ul className="todo__entries mb-5">
+      <div className="todo__entries mb-5">
         {toDosFilter.map((todo) => (
           <TodoListItem {...todo} key={todo.id} />
         ))}
-      </ul>
+      </div>
     </>
   );
 };

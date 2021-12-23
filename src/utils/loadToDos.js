@@ -11,6 +11,9 @@ export const loadToDos = async (uid) => {
     console.log(err);
     Swal.fire('Error in LoadToDos', err.message, 'error');
   }
+  const sortToDos = todos.sort(
+    (a, b) => b.createdDate - a.createdDate,
+  );
 
-  return todos;
+  return sortToDos;
 };
