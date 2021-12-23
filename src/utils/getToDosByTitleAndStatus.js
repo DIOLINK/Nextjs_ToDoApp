@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { toDoStatus } from '../types';
 export const getToDosByTitleAndStatus = (title, status) => {
   const { todos } = useSelector((state) => state.todos);
 
