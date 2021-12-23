@@ -1,6 +1,8 @@
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { activeTodo } from '../../actions/todos';
+import { activeTodo, setStatusToDo } from '../../actions/todos';
+import { setEditModalToDo, setShowModalToDo } from '../../actions/ui';
+import { toDoStatus } from '../../types';
 
 const TodoListItem = ({
   createdDate,
@@ -8,49 +10,104 @@ const TodoListItem = ({
   title,
   id,
   status,
+  description,
 }) => {
   const dispatch = useDispatch();
   const handleSelect = () => {
     dispatch(
-      activeTodo(id, { createdDate, updateDate, title, id, status }),
+      activeTodo(id, {
+        createdDate,
+        updateDate,
+        title,
+        id,
+        status,
+        description,
+      }),
     );
+    dispatch(setShowModalToDo(true));
+  };
+  const handleEdit = () => {
+    dispatch(
+      activeTodo(id, {
+        createdDate,
+        updateDate,
+        title,
+        id,
+        status,
+        description,
+      }),
+    );
+    dispatch(setEditModalToDo(true));
   };
   const handleDelete = () => {
-    console.log(id);
+    dispatch(setStatusToDo(id, toDoStatus.deleted));
   };
   const handleDone = () => {
-    console.log(status.done);
+    if (status === toDoStatus.done) {
+      dispatch(setStatusToDo(id, toDoStatus.pending));
+    } else {
+      dispatch(setStatusToDo(id, toDoStatus.done));
+    }
   };
   return (
-    <li className="todo__list-group-item mt-1">
+    <div className="todo__list-group-item mb-2">
       <div
         className="todo_card-content pointer"
         onClick={handleSelect}
       >
-        <p
-          className={`todo__task-content ${
-            status.done && 'todo__complete'
+        <h3
+          className={`todo__task-title ${
+            status === toDoStatus.done && 'todo__complete'
           }`}
         >
+          <span
+            class={
+              status === toDoStatus.done
+                ? 'badge bg-success'
+                : status === toDoStatus.pending
+                ? 'badge bg-warning text-dark'
+                : 'badge bg-danger'
+            }
+          >
+            {status}
+          </span>{' '}
           {title}
+        </h3>
+        <p
+          className={`todo__task-body ${
+            status === toDoStatus.done && 'todo__complete'
+          }`}
+        >
+          {description}
         </p>
-        <p>{moment(createdDate).format('lll')}</p>
+        <p className={'todo__task-body'}>
+          {moment(createdDate).format('lll')}
+        </p>
       </div>
       <div className="todo__btn-content">
         <button className="btn btn-primary-done" onClick={handleDone}>
           <div className="todo__task-date-box">
-            <i class="fas fa-check" />
+            <i className="fas fa-check" />
             <p>Done</p>
           </div>
         </button>
-        <button className="btn btn-danger" onClick={handleDelete}>
+        <button className="btn btn-primary-edit" onClick={handleEdit}>
           <div className="todo__task-date-box">
-            <i class="fas fa-trash-alt" />
+            <i className="fas fa-pencil-alt" />
+            <p>Edit</p>
+          </div>
+        </button>
+        <button
+          className="btn btn-danger-delete"
+          onClick={handleDelete}
+        >
+          <div className="todo__task-date-box">
+            <i className="fas fa-trash-alt" />
             <p>Deleted</p>
           </div>
         </button>
       </div>
-    </li>
+    </div>
   );
 };
 

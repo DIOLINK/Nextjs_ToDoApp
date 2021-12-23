@@ -4,7 +4,7 @@ import { db } from '../firebase/firebase-config';
 
 import { toDoStatus, types } from '../types';
 import { loadToDos } from '../utils/loadToDos';
-import { setShowModalToDo } from './ui';
+import { setEditModalToDo } from './ui';
 
 export const startNewToDo = () => {
   return async (dispatch, getState) => {
@@ -16,11 +16,21 @@ export const startNewToDo = () => {
       updateDate: null,
       status: toDoStatus.pending,
     };
+    Swal.fire({
+      title: 'Creating new task...',
+      text: 'Please wait...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const doc = await db
       .collection(`${uid}/todos/tasks`)
       .add(newTodo);
-    dispatch(addNewToDo(doc.id, newTodo));
     dispatch(activeTodo(doc.id, newTodo));
+    Swal.close();
+    dispatch(setEditModalToDo(true));
+    dispatch(addNewToDo(doc.id, newTodo));
   };
 };
 
@@ -72,7 +82,7 @@ export const startSaveToDo = (todo) => {
 
       dispatch(refreshToDo(todo.id, TaskToSave));
       Swal.fire('Saved', 'Your task has been saved', 'success');
-      dispatch(setShowModalToDo(false));
+      dispatch(setEditModalToDo(false));
     } catch (error) {
       console.log(`Error to Save task: `, error);
       Swal.close();
@@ -100,7 +110,7 @@ export const startDeletingToDo = (id) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
     try {
-      dispatch(setShowModalToDo(false));
+      dispatch(setEditModalToDo(false));
       Swal.fire({
         title: 'Deleting...',
         text: 'Please wait...',

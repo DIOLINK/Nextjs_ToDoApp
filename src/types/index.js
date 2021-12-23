@@ -6,7 +6,8 @@ export const types = {
   uiUnSetError: '[UI] UnSet Error',
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
-  uiToggleModalToDo: '[UI] Set Active Modal ToDo',
+  uiToggleShowModalToDo: '[UI] Active Show Modal',
+  uiToggleEditModalToDo: '[UI] Active Edit Modal',
 
   AddNewToDo: '[ToDo] New ToDo',
   ActiveToDo: '[ToDo] Set Active ToDo',

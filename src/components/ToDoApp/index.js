@@ -7,11 +7,12 @@ import { startNewToDo } from '../../actions/todos';
 import { setShowModalToDo } from '../../actions/ui';
 import ToDoForm from './TodoForm';
 import TodoList from './TodoList';
+import TodoShow from './TodoShow';
 export const ToDoApp = () => {
   const dispatch = useDispatch();
   const { auth, ui } = useSelector((state) => state);
   const { name } = auth;
-  const { showModal } = ui;
+  const { showModal, editModal } = ui;
 
   const handleClose = () => {
     dispatch(setShowModalToDo(false));
@@ -21,7 +22,6 @@ export const ToDoApp = () => {
   };
   const handleAddNewTask = () => {
     dispatch(startNewToDo());
-    dispatch(setShowModalToDo(true));
   };
 
   return (
@@ -48,7 +48,8 @@ export const ToDoApp = () => {
           </button>
         </div>
       </div>
-      {showModal && <ToDoForm handleClose={handleClose} />}
+      {editModal && <ToDoForm handleClose={handleClose} />}
+      {showModal && <TodoShow handleClose={handleClose} />}
       <TodoList />
     </div>
   );

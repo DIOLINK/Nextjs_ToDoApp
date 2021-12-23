@@ -8,15 +8,14 @@ import {
   startDeletingToDo,
   startSaveToDo,
 } from '../../actions/todos';
-import { setShowModalToDo } from '../../actions/ui';
 
 import useForm from '../../hooks/useForm';
 
-const ToDoForm = ({ show, handleClose }) => {
+const ToDoForm = ({ handleClose }) => {
   const dispatch = useDispatch();
   const { todos, ui } = useSelector((state) => state);
   const { active } = todos;
-  const { showModal } = ui;
+  const { editModal } = ui;
   const [formValues, handleInputChange, resetForm] = useForm(active);
 
   const activeId = useRef(active.id);
@@ -32,7 +31,7 @@ const ToDoForm = ({ show, handleClose }) => {
     dispatch(activeTodo(formValues.id, { ...formValues }));
   }, [formValues, dispatch]);
 
-  const { description, title, createdDate } = formValues;
+  const { description, title, createdDate, status } = formValues;
   const handleSave = (e) => {
     e.preventDefault();
     if (description.trim().length <= 1) {
@@ -55,7 +54,7 @@ const ToDoForm = ({ show, handleClose }) => {
 
   return (
     <Modal
-      show={showModal}
+      show={editModal}
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
@@ -63,6 +62,7 @@ const ToDoForm = ({ show, handleClose }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           <div>
+            <p>Status: {status}</p>
             <p className={'todo__task-body'}>
               {moment(createdDate).format('lll')}
             </p>

@@ -18,6 +18,11 @@ export const finishLoading = () => ({
 });
 
 export const setShowModalToDo = (showModal) => ({
-  type: types.uiToggleModalToDo,
+  type: types.uiToggleShowModalToDo,
   payload: showModal,
+});
+
+export const setEditModalToDo = (editModal) => ({
+  type: types.uiToggleEditModalToDo,
+  payload: editModal,
 });
