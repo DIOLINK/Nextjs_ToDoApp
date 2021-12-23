@@ -1,4 +1,5 @@
 .todo__main-content {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -14,7 +15,7 @@
   }
 }
 .todo__entries {
-  width: 50vw;
+  width: 100%;
 }
 .todo__task {
   background-color: $white;
@@ -33,7 +34,9 @@
   padding: 10px;
 }
 .todo__task-body {
-  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
 }
 .todo__task-title {
   font-size: 1.2rem;
@@ -50,22 +53,43 @@
   justify-content: center;
   padding: 5px;
 }
-.todo__task-date-box span {
+.todo__task-date-box {
   font-size: 12px;
 }
+.todo__task-date-box p {
+  margin: 0;
+  padding: 0;
+}
 .todo__list-group-item {
+  background-color: $white;
   overflow: hidden;
   border-radius: 4px;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   box-shadow: 2px 3px 4px 0px $dark-grey;
 }
 .todo__btn-content {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
 }
 .todo__complete {
   text-decoration: line-through;
+}
+.todo__input {
+  color: $dark-grey;
+  border: 0px;
+  border-bottom: 1px solid $light-grey;
+  font-size: 16px;
+  margin-bottom: 10px;
+  height: 20px;
+  width: 100%;
+  transition: border-bottom 0.3s ease;
+  &:focus {
+    border-bottom: 1px solid $primary;
+    outline: none;
+  }
 }

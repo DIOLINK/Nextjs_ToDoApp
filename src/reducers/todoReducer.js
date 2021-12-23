@@ -18,14 +18,26 @@ export const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         active: null,
-        todos: state.filter((todo) => todo.id !== action.payload),
+        todos: state.todos.filter(
+          (todo) => todo.id !== action.payload,
+        ),
       };
     case types.ToggleToDo:
-      return state.map((todo) =>
-        todo.id === action.payload
-          ? { ...todo, done: !todo.done }
-          : todo,
-      );
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id
+            ? { ...todo, status: action.payload.status }
+            : todo,
+        ),
+      };
+    case types.UpdateToDo:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id ? action.payload.todo : todo,
+        ),
+      };
     default:
       return state;
   }

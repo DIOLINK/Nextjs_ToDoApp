@@ -1,6 +1,10 @@
 import { types } from '../types';
 
-const initialState = { loading: false, msgError: null };
+const initialState = {
+  loading: false,
+  msgError: null,
+  showModal: false,
+};
 
 export const uiReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,6 +19,8 @@ export const uiReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case types.uiFinishLoading:
       return { ...state, loading: false };
+    case types.uiToggleModalToDo:
+      return { ...state, showModal: action.payload };
     default:
       return state;
   }

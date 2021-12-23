@@ -1,7 +1,10 @@
 import Swal from 'sweetalert2';
+
 import { db } from '../firebase/firebase-config';
-import { types } from '../types';
+
+import { toDoStatus, types } from '../types';
 import { loadToDos } from '../utils/loadToDos';
+import { setShowModalToDo } from './ui';
 
 export const startNewToDo = () => {
   return async (dispatch, getState) => {
@@ -11,13 +14,13 @@ export const startNewToDo = () => {
       description: '',
       createdDate: new Date().getTime(),
       updateDate: null,
-      status: { done: false, deleted: false },
+      status: toDoStatus.pending,
     };
     const doc = await db
       .collection(`${uid}/todos/tasks`)
       .add(newTodo);
-    dispatch(activeTodo(doc.id, newTodo));
     dispatch(addNewToDo(doc.id, newTodo));
+    dispatch(activeTodo(doc.id, newTodo));
   };
 };
 
@@ -69,10 +72,11 @@ export const startSaveToDo = (todo) => {
 
       dispatch(refreshToDo(todo.id, TaskToSave));
       Swal.fire('Saved', 'Your task has been saved', 'success');
+      dispatch(setShowModalToDo(false));
     } catch (error) {
       console.log(`Error to Save task: `, error);
       Swal.close();
-      Swal.fire('Error', error.message, 'error');
+      Swal.fire('Error to Save task', error.message, 'error');
     }
   };
 };
@@ -81,7 +85,7 @@ export const refreshToDo = (id, todo) => ({
   type: types.UpdateToDo,
   payload: {
     id,
-    todos: {
+    todo: {
       id,
       ...todo,
     },
@@ -90,4 +94,39 @@ export const refreshToDo = (id, todo) => ({
 
 export const logoutToDoClear = () => ({
   type: types.LogoutCleaningToDo,
+});
+
+export const startDeletingToDo = (id) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    try {
+      dispatch(setShowModalToDo(false));
+      Swal.fire({
+        title: 'Deleting...',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      await db.doc(`${uid}/todos/tasks/${id}`).delete();
+      dispatch(deleteToDo(id));
+      Swal.close();
+    } catch (error) {
+      Swal.close();
+      console.log(`Error to Deleteted ToDo: `, error);
+
+      Swal.fire('Error', error.message, 'error');
+    }
+  };
+};
+
+export const deleteToDo = (id) => ({
+  type: types.DeleteToDo,
+  payload: id,
+});
+
+export const setStatusToDo = (id, status) => ({
+  type: types.ToggleToDo,
+  payload: { id, status },
 });

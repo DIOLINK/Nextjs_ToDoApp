@@ -16,3 +16,8 @@ export const startLoading = () => ({
 export const finishLoading = () => ({
   type: types.uiFinishLoading,
 });
+
+export const setShowModalToDo = (showModal) => ({
+  type: types.uiToggleModalToDo,
+  payload: showModal,
+});

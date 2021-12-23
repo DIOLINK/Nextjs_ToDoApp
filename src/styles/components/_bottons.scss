@@ -1,16 +1,12 @@
 .btn {
   background-color: transparent;
   border: none;
-  color: whitesmoke;
   cursor: pointer;
   font-size: 12px;
   padding: 7px 10px;
   transition: color 0.3s ease;
   &:focus {
     outline: none;
-  }
-  &:hover {
-    color: darken($color: $white, $amount: 15);
   }
 }
 
@@ -23,10 +19,22 @@
 }
 
 .btn-primary-done {
+  color: $white;
   background-color: $primary;
   transition: background-color 0.3s ease;
   &:hover {
+    color: $white;
     background-color: darken($color: $primary, $amount: 15);
+  }
+}
+
+.btn-primary-edit {
+  color: $white;
+  background-color: $green;
+  transition: background-color 0.3s ease;
+  &:hover {
+    color: $white;
+    background-color: darken($color: $green, $amount: 10);
   }
 }
 
@@ -34,10 +42,12 @@
   width: 100%;
 }
 
-.btn-danger {
+.btn-danger-delete {
   background-color: red;
+  color: $white;
   transition: background-color 0.3s ease;
   &:hover {
+    color: $white;
     background-color: darken($color: red, $amount: 15);
   }
 }
