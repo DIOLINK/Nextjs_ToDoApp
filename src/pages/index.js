@@ -18,7 +18,7 @@ export default function Home() {
     firebase.auth().onAuthStateChanged(async (user) => {
       if (user?.uid) {
         dispatch(startLoadingToDos(user.uid));
-        dispatch(login(user.uid, user.displayName));
+        dispatch(login(user.uid, user.displayName, user.email));
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);

@@ -23,3 +23,22 @@ export const toDoStatus = {
   done: 'Done',
   deleted: 'Deleted',
 };
+
+export const msgServer = {
+  AddNewTask: {
+    subject: 'Add New Task',
+    message: 'You have added a new task!!!',
+  },
+  UpdateTask: {
+    subject: 'Updated a Task',
+    message: 'You have updated a task!!!',
+  },
+  DeleteTask: {
+    subject: 'Delete a Task',
+    message: 'You have deleted a task!!!',
+  },
+  StatusTask: {
+    subject: 'Status a Task',
+    message: 'You have changed the status of a task!!!',
+  },
+};
