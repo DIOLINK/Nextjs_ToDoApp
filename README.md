@@ -1,3 +1,13 @@
+### Images and Gifs
+
+![Peek 23-12-2021 16-53](https://user-images.githubusercontent.com/54718297/147286474-722141ac-842c-4d78-b99f-8244fb318cc3.gif)
+
+![image](https://user-images.githubusercontent.com/54718297/147286783-6c33f356-3283-4a45-b7ac-5c47700278cf.png)
+
+![image](https://user-images.githubusercontent.com/54718297/147286882-eb3d98fd-a1a7-4a5b-bb4b-d6efd73a6e42.png)
+
+![image](https://user-images.githubusercontent.com/54718297/147286902-113ecbae-492f-4de2-a93e-3f99c75dc222.png)
+
 # With Docker
 
 This examples shows how to use Docker with Next.js based on the [deployment documentation](https://nextjs.org/docs/deployment#docker-image).
